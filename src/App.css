@@ -6,6 +6,7 @@
 }
 .flex-end-box div {
   padding: 10px;
+  cursor: pointer;
 }
 .container {
   position: relative;
@@ -44,15 +45,16 @@
 }
 .button {
   position: absolute;
-  left: 390px;
+  left: 388px;
   background-color: white;
   color: black;
   border: none;
   height: "28px";
   cursor: pointer;
   width: 50px;
-  height: 30px;
+  height: 20px;
   margin-top: 1px;
+  top: px;
 }
 .img-container {
   animation: slideUp 1s ease-out;
@@ -89,4 +91,11 @@
 }
 .sub-menu-item {
   list-style-type: none;
+}
+.side-menu li {
+  cursor: pointer;
+  color: #666666;
+}
+.side-menu li:hover {
+  color: #000000;
 }

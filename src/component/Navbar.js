@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
+
 const Navbar = () => {
   const menuList = ["WOMAN", "MAN", "KIDS", "HOME", "BEAUTY"];
   const sideMenuList = [
@@ -19,13 +19,29 @@ const Navbar = () => {
   ];
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const navigate = useNavigate();
+
   const goHomePage = () => {
-    console.log("click");
     navigate("/");
   };
+
+  const goProductPage = (keyword) => {
+    navigate(`/?q=${keyword}`);
+  };
+
+  const handleInputKeyDown = (event) => {
+    if (event.key === "Enter" || event.keyCode === 13) {
+      goProductPage(event.target.value);
+    }
+  };
+
+  const handleSubMenuClick = (subItem) => {
+    goProductPage(subItem);
+  };
+
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
   };
+
   return (
     <div className="navbar-container">
       <div className="container">
@@ -58,8 +74,19 @@ const Navbar = () => {
           <div>바스킷백</div>
         </div>
         <div className="input-area">
-          <input className="input-box" type="text" />
-          <button className="button">검색</button>
+          <input
+            className="input-box"
+            type="text"
+            onKeyDown={handleInputKeyDown}
+          />
+          <button
+            className="button"
+            onClick={() =>
+              goProductPage(document.querySelector(".input-box").value)
+            }
+          >
+            검색
+          </button>
         </div>
       </div>
       {isSideMenuOpen && (
@@ -69,7 +96,11 @@ const Navbar = () => {
               <h3>{item.name}</h3>
               <ul>
                 {item.subMenu.map((subItem, subIndex) => (
-                  <li key={subIndex} className="sub-menu-item">
+                  <li
+                    key={subIndex}
+                    className="sub-menu-item"
+                    onClick={() => handleSubMenuClick(subItem)}
+                  >
                     {subItem}
                   </li>
                 ))}
