@@ -20,6 +20,7 @@ const HomePage = () => {
   const getProducts = async () => {
     let searchQuery = query.get("q") || "";
     let typeQuery = query.get("type") || "";
+
     let menuQuery = query.get("gender") || "";
     let url = `http://localhost:5000/products?`;
     let params = new URLSearchParams();
@@ -31,7 +32,8 @@ const HomePage = () => {
 
     let response = await fetch(url);
     let data = await response.json();
-    console.log(data);
+    console.log("Query:", { searchQuery, typeQuery, menuQuery }); // 검색어 확인
+    console.log("Data:", data);
     setProductList(data);
     setShowSlideImage(!searchQuery && !typeQuery && !menuQuery);
   };

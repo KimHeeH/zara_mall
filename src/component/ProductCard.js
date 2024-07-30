@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
-
+  const navigate = useNavigate();
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -10,8 +11,11 @@ const ProductCard = ({ product }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+  const goClickProduct = (id) => {
+    navigate(`/products/${product.id}`);
+  };
   return (
-    <div className="product">
+    <div className="product" onClick={goClickProduct}>
       <div
         className="image-container"
         onMouseEnter={handleMouseEnter}
