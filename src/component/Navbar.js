@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { IoMenuSharp } from "react-icons/io5";
 
 const Navbar = () => {
-  const menuList = ["WOMAN", "MAN", "KIDS", "HOME", "BEAUTY"];
+  const navigate = useNavigate();
+  const menuList = ["woman", "man", "kids", "home", "beauty"];
   const sideMenuList = [
     {
       name: "WOMAN",
@@ -18,7 +19,6 @@ const Navbar = () => {
     { name: "BEAUTY", subMenu: ["Skincare", "Makeup", "Fragrance"] },
   ];
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const goHomePage = () => {
     navigate("/");
@@ -34,14 +34,25 @@ const Navbar = () => {
     }
   };
 
+  const goLoginPage = () => {
+    navigate("/login");
+  };
+
   const handleSubMenuClick = (subItem) => {
-    goProductPage(subItem);
+    goSubTypePage(subItem);
+  };
+
+  const goSubTypePage = (keyword) => {
+    navigate(`/?type=${keyword}`);
+    setIsSideMenuOpen(false);
   };
 
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
   };
-
+  const goMenuProduct = (keyword) => {
+    navigate(`/?gender=${keyword}`);
+  };
   return (
     <div className="navbar-container">
       <div className="container">
@@ -62,14 +73,20 @@ const Navbar = () => {
         <div>
           <ul className="menu-list">
             {menuList.map((menu) => (
-              <li className="menu" key={menu}>
+              <li
+                className="menu"
+                key={menu}
+                onClick={() => goMenuProduct(menu)}
+              >
                 {menu}
               </li>
             ))}
           </ul>
         </div>
         <div className="flex-end-box">
-          <div>로그인</div>
+          <div style={{ cursor: "pointer" }} onClick={goLoginPage}>
+            로그인
+          </div>
           <div>도움말</div>
           <div>바스킷백</div>
         </div>

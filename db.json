@@ -2,9 +2,10 @@
   "products": [
     {
       "id": 0,
-      "img": "https://noona-hnm.netlify.app/pattern-jacket.jpeg",
-      "title": "벨티드 트윌 코트",
-      "price": 99900,
+      "img": "https://static.zara.net/assets/public/8c16/c685/4e40442ba709/fdb4a49bd230/08399300250-p/08399300250-p.jpg?ts=1719993481098&w=750",
+      "img2": "https://static.zara.net/assets/public/9e49/645c/618b4eed835e/93320ff5bf03/08399300250-e1/08399300250-e1.jpg?ts=1720168176740&w=750",
+      "title": "펀칭 자수 블라우스",
+      "price": 89900,
       "choice": true,
       "new": true,
       "size": ["S", "M", "L"],
@@ -13,63 +14,69 @@
     },
     {
       "id": 1,
-      "img": "https://noona-hnm.netlify.app/ankle-jeans.jpeg",
-      "title": "슬림핏 맘 하이웨이스트 앵클 진",
-      "price": 29900,
+      "img": "https://static.zara.net/assets/public/aa3c/390a/46bf45fa9afe/06f67738cd52/02298161250-015-p/02298161250-015-p.jpg?ts=1718958971716&w=563",
+      "img2": "https://static.zara.net/assets/public/3f49/48c0/01a449868f1f/b071f7543382/04424156250-e1/04424156250-e1.jpg?ts=1719391510550&w=563",
+      "title": "포켓 티셔츠",
+      "price": 17900,
       "choice": true,
       "new": true,
       "size": ["S", "M", "L"],
       "gender": "woman",
-      "type": "Bottoms"
+      "type": "Tops"
     },
     {
       "id": 2,
-      "img": "https://noona-hnm.netlify.app/wide-jeans.jpeg",
-      "title": "와이드 하이웨이스트 진",
-      "price": 39900,
+      "img": "https://static.zara.net/assets/public/8b62/7e8d/135145e0b57e/030b95ea410a/08220893400-e1/08220893400-e1.jpg?ts=1720772392837&w=563",
+      "img2": "https://static.zara.net/assets/public/2dda/9c80/8cdb41bfb3b3/de4c6ead3b39/08220893400-e2/08220893400-e2.jpg?ts=1720772391868&w=563",
+      "title": "옥스퍼드 크롭 셔츠",
+      "price": 49900,
       "choice": false,
       "new": true,
       "size": ["S", "M", "L"],
       "gender": "woman",
-      "type": "Bottoms"
+      "type": "Tops"
     },
     {
       "id": 3,
-      "img": "https://noona-hnm.netlify.app/cottom-dress.jpeg",
-      "title": "퍼프 슬리브 드레스",
-      "price": 39900,
+      "img": "https://static.zara.net/assets/public/9615/fed9/c38644d68144/33f239de450b/03920122600-p/03920122600-p.jpg?ts=1721383657168&w=563",
+      "img2": "https://static.zara.net/assets/public/f9a4/a5d3/0b244c26bb16/141ea21c9fcf/03920122600-a2/03920122600-a2.jpg?ts=1721383658836&w=563",
+      "title": "니트 드레이프 탑",
+      "price": 49900,
       "choice": false,
       "new": true,
       "size": ["S", "M", "L"],
       "gender": "woman",
-      "type": "Dresses"
+      "type": "Tops"
     },
     {
       "id": 4,
-      "img": "https://noona-hnm.netlify.app/shirt-dress.jpeg",
-      "title": "프릴 디테일 드레스",
-      "price": 29900,
+      "img": "https://static.zara.net/assets/public/a7d8/ab94/a49240709e41/3d65035609cc/00085636250-a1/00085636250-a1.jpg?ts=1721224328460&w=563",
+      "img2": "https://static.zara.net/assets/public/5fde/0a89/6f8a4b15988a/ce037bebdd02/00085636250-e1/00085636250-e1.jpg?ts=1721225934035&w=563",
+      "title": "프런트 프린트 티셔츠",
+      "price": 235900,
       "choice": true,
       "new": false,
       "size": ["S", "M", "L"],
       "gender": "woman",
-      "type": "Dresses"
+      "type": "Tops"
     },
     {
       "id": 5,
-      "img": "https://noona-hnm.netlify.app/flare-dress.jpeg",
-      "title": "시퀸 플레어 드레스",
+      "img": "https://static.zara.net/assets/public/eafa/c007/3e9648769eb6/9889290a0039/05039253090-p/05039253090-p.jpg?ts=1721664552644&w=563",
+      "img2": "https://static.zara.net/assets/public/69e6/f718/f0b34b61a9a8/e7195e451f8b/05039253090-e1/05039253090-e1.jpg?ts=1721748038932&w=563",
+      "title": "자카드 폴로 티셔츠",
       "price": 39900,
       "choice": false,
       "new": false,
       "size": ["S", "M", "L"],
       "gender": "woman",
-      "type": "Dresses"
+      "type": "Tops"
     },
     {
       "id": 6,
-      "img": "https://noona-hnm.netlify.app/single-jacket.jpeg",
-      "title": "더블 브레스티드 재킷",
+      "img": "https://static.zara.net/assets/public/021a/64f6/5e594310be26/bbc919d509bb/04174168800-016-p/04174168800-016-p.jpg?ts=1718367586344&w=563",
+      "img2": "https://static.zara.net/assets/public/2af8/1d6b/36614ec4b0a0/fc882ec49ed3/04174168800-e1/04174168800-e1.jpg?ts=1721231394417&w=563",
+      "title": "숏 슬리브 리브드 티셔츠",
       "price": 39900,
       "choice": true,
       "new": false,
@@ -85,7 +92,7 @@
       "choice": false,
       "new": true,
       "size": ["S", "M", "L"],
-      "gender": "woman",
+      "gender": "man",
       "type": "Tops"
     },
     {
@@ -96,7 +103,7 @@
       "choice": true,
       "new": true,
       "size": ["S", "M", "L"],
-      "gender": "woman",
+      "gender": "man",
       "type": "Tops"
     },
     {
@@ -107,14 +114,15 @@
       "choice": false,
       "new": true,
       "size": ["S", "M", "L"],
-      "gender": "woman",
+      "gender": "man",
       "type": "Tops"
     },
     {
       "id": 10,
-      "img": "https://noona-hnm.netlify.app/regular-wide-jeans.jpeg",
-      "title": "와이드 트윌 팬츠",
-      "price": 19900,
+      "img": "https://static.zara.net/assets/public/fb8f/dfcc/95b744ebaad7/f63c7da8a524/00779153407-e1/00779153407-e1.jpg?ts=1720770820034&w=563",
+      "img2": "https://static.zara.net/assets/public/680b/9fa4/19c34500bd1b/295c83c6dbdf/00779153407-e2/00779153407-e2.jpg?ts=1720770820649&w=563",
+      "title": "페이퍼백 와이드 팬츠",
+      "price": 49900,
       "choice": true,
       "new": false,
       "size": ["S", "M", "L"],
@@ -123,9 +131,10 @@
     },
     {
       "id": 11,
-      "img": "https://noona-hnm.netlify.app/high-jeans.jpeg",
-      "title": "플레어 로라이즈 진",
-      "price": 29900,
+      "img": "https://static.zara.net/assets/public/e3f6/b269/e31c4fd3be33/91b0ab1423da/01255410712-016-p/01255410712-016-p.jpg?ts=1721298231477&w=563",
+      "img2": "https://static.zara.net/assets/public/7863/a438/c1cf43128f30/4dc70f4e0fa3/01255410712-e1/01255410712-e1.jpg?ts=1719323645091&w=563",
+      "title": "플루이드 플리츠 팬츠",
+      "price": 59900,
       "choice": true,
       "new": true,
       "size": ["S", "M", "L"],
@@ -134,9 +143,10 @@
     },
     {
       "id": 12,
-      "img": "https://noona-hnm.netlify.app/mash-dress.jpeg",
-      "title": "셔링 메쉬 드레스",
-      "price": 14900,
+      "img": "https://static.zara.net/assets/public/219c/5e4c/16f84675b7aa/6b9ea2da413e/03920069800-p/03920069800-p.jpg?ts=1711115327551&w=563",
+      "img2": "https://static.zara.net/assets/public/6555/dceb/f4824c69ade2/5eebeb7475b2/03920069800-e1/03920069800-e1.jpg?ts=1722000994225&w=563",
+      "title": "OFF-THE-SHOULDER KNIT DRESS",
+      "price": 59900,
       "choice": true,
       "new": true,
       "size": ["S", "M", "L"],
@@ -151,7 +161,7 @@
       "choice": false,
       "new": false,
       "size": ["S", "M", "L"],
-      "gender": "woman",
+      "gender": "man",
       "type": "Tops"
     },
     {
@@ -266,6 +276,54 @@
       "new": false,
       "gender": "woman",
       "type": "Knit"
+    },
+    {
+      "id": 24,
+      "img": "https://static.zara.net/assets/public/c766/73bb/ee8c4dc49652/ac3b369cb670/07954315800-510-p/07954315800-510-p.jpg?ts=1721225090971&w=563",
+      "img2": " https://static.zara.net/assets/public/a23c/a167/df8d401188d8/16a349ebe36d/07954178800-e1/07954178800-e1.jpg?ts=1717140233203&w=563",
+
+      "title": "미니 원피스 ZW COLLECTION",
+      "price": 55900,
+      "choice": false,
+      "new": false,
+      "gender": "woman",
+      "type": "Dresses"
+    },
+    {
+      "id": 25,
+      "img": "https://static.zara.net/assets/public/abf0/3cde/f96245d98f23/70b43335cf08/08197290406-p/08197290406-p.jpg?ts=1718361543474&w=563",
+      "img2": " https://static.zara.net/assets/public/9005/e2d8/e6b54e12807d/6c1a3797f246/08197290406-e1/08197290406-e1.jpg?ts=1718286993423&w=563",
+
+      "title": "TRF 데님 미니 스커트",
+      "price": 55900,
+      "choice": false,
+      "new": false,
+      "gender": "woman",
+      "type": "Skirts"
+    },
+    {
+      "id": 26,
+      "img": "https://static.zara.net/assets/public/0e71/c330/a0a64839b9a6/0ded23ae99a1/08459750712-p/08459750712-p.jpg?ts=1721733472684&w=563",
+      "img2": "https://static.zara.net/assets/public/a890/6bf9/e0d14534a202/216e73c9b28b/08459750712-e1/08459750712-e1.jpg?ts=1721740312443&w=563",
+
+      "title": "플라워 스트럭처 미니 스커트",
+      "price": 59900,
+      "choice": false,
+      "new": false,
+      "gender": "woman",
+      "type": "Skirts"
+    },
+    {
+      "id": 27,
+      "img": "https://static.zara.net/assets/public/26a4/9287/56ce49e58e39/d1fcea98ef25/00881500800-p/00881500800-p.jpg?ts=1721318117724&w=563",
+      "img2": "https://static.zara.net/assets/public/c420/bc58/9e304d3c9a04/051cd250f88b/00881500800-e1/00881500800-e1.jpg?ts=1721290726429&w=563",
+
+      "title": "미니 원피스 ZW COLLECTION",
+      "price": 49900,
+      "choice": false,
+      "new": false,
+      "gender": "woman",
+      "type": "Skirts"
     }
   ]
 }

@@ -19,18 +19,21 @@ const HomePage = () => {
 
   const getProducts = async () => {
     let searchQuery = query.get("q") || "";
-    if (searchQuery) {
-      console.log("검색한 쿼리는", searchQuery);
-      let url = `http://localhost:5000/products?type=${searchQuery}`;
-      let response = await fetch(url);
-      let data = await response.json();
-      console.log(data);
-      setProductList(data);
-      setShowSlideImage(false);
-    } else {
-      setProductList([]);
-      setShowSlideImage(true);
-    }
+    let typeQuery = query.get("type") || "";
+    let menuQuery = query.get("gender") || "";
+    let url = `http://localhost:5000/products?`;
+    let params = new URLSearchParams();
+
+    if (searchQuery) params.append("q", searchQuery);
+    if (typeQuery) params.append("type", typeQuery);
+    if (menuQuery) params.append("gender", menuQuery);
+    url += params.toString();
+
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log(data);
+    setProductList(data);
+    setShowSlideImage(!searchQuery && !typeQuery && !menuQuery);
   };
 
   useEffect(() => {
