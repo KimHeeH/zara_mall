@@ -34,7 +34,9 @@ const HomePage = () => {
     let data = await response.json();
     console.log("Query:", { searchQuery, typeQuery, menuQuery }); // 검색어 확인
     console.log("Data:", data);
+
     setProductList(data);
+
     setShowSlideImage(!searchQuery && !typeQuery && !menuQuery);
   };
 

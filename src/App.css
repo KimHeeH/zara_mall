@@ -79,6 +79,9 @@
 .menu:hover {
   color: #000000;
 }
+.slide-image {
+  width: 1200px;
+}
 .side-menu {
   position: fixed;
   background-color: #fff;
