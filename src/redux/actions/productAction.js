@@ -11,7 +11,7 @@ function getProducts(searchQuery, typeQuery, menuQuery) {
       if (menuQuery) params.append("gender", menuQuery);
 
       // Limit을 추가해 한 번에 가져오는 상품의 수를 제한할 수 있습니다.
-      params.append("_limit", 10);
+      params.append("_limit", 5);
 
       url += `?${params.toString()}`;
 
