@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { authenticateAction } from "../redux/actions/authenticateAction";
 const ProductCard = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
+  const authenticate = useSelector((state) => state.auth.authenticate);
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -11,8 +14,14 @@ const ProductCard = ({ product }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-  const goClickProduct = (id) => {
-    navigate(`/products/${product.id}`);
+  const goClickProduct = () => {
+    if (authenticate == true) {
+      if (product?.id) {
+        navigate(`/products/${product.id}`);
+      }
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <div className="product" onClick={goClickProduct}>
@@ -24,8 +33,8 @@ const ProductCard = ({ product }) => {
         <img
           className="product-img"
           width="300px"
-          src={isHovered ? product.img2 : product.img}
-          alt={product.title}
+          src={isHovered ? product?.img2 : product?.img}
+          alt={product?.title}
         />
       </div>
       <div>{product?.choice === true ? "concious choice" : ""}</div>

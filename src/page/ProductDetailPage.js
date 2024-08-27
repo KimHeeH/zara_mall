@@ -3,30 +3,39 @@ import { useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons"; // 개별 아이콘 가져오기
+import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
+import { productAction } from "../redux/actions/productAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductDetailPage = () => {
+  const dispatch = useDispatch();
   const [slideproductImage, setSlideproductImage] = useState(false);
-  const [product, setProduct] = useState("");
+  const product = useSelector((state) => state.product.product);
   const [sizeList, setSizeList] = useState([]);
-  let { id } = useParams();
+  const { id } = useParams();
 
-  const getProducts = async () => {
-    let url = `http://localhost:5000/products/${id}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setProduct(data);
-    setSizeList(data.size);
-    console.log(data.size);
-    console.log("data는요", data);
+  const getProductDetail = () => {
+    dispatch(productAction.getProductDetail(id));
   };
+
   const handleClickSlide = () => {
     setSlideproductImage(!slideproductImage);
   };
+
   useEffect(() => {
-    getProducts();
+    if (product && product.size) {
+      setSizeList(product.size);
+    }
+  }, [product]);
+
+  useEffect(() => {
+    getProductDetail();
   }, [id]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container>
