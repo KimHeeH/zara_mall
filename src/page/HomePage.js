@@ -31,8 +31,10 @@ const HomePage = () => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
+
+    // Cleanup function
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [currentImageIndex]); // 여기에 currentImageIndex 의존성 추가
 
   useEffect(() => {
     getProducts();
