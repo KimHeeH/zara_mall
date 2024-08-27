@@ -131,40 +131,7 @@
       "type": "Dresses",
       "des": "어깨끈이 달린 스트레이트 네크라인 미니 원피스. 옆면 심라인 히든 포켓. 셔링 디테일. 톤온톤 내부 안감이 매치됨. 뒷면 심라인 콘실 지퍼 여밈."
     },
-    {
-      "id": 10,
-      "img": "https://noona-hnm.netlify.app/sweat-shirt.jpeg",
-      "title": "스웨트셔츠",
-      "price": 29900,
-      "choice": false,
-      "new": false,
-      "size": ["S", "M"],
-      "gender": "man",
-      "type": "Tops",
-      "des": "어깨끈이 달린 스트레이트 네크라인 미니 원피스. 옆면 심라인 히든 포켓. 셔링 디테일. 톤온톤 내부 안감이 매치됨. 뒷면 심라인 콘실 지퍼 여밈."
-    },
-    {
-      "id": 11,
-      "img": "https://lp2.hm.com/hmgoepprod?set=source[/8e/fd/8efd41ba934924e28315493d14884f3984ca8e7c.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]",
-      "title": "크로스백",
-      "price": 34900,
-      "choice": false,
-      "new": false,
-      "gender": "woman",
-      "type": "bag",
-      "des": "어깨끈이 달린 스트레이트 네크라인 미니 원피스. 옆면 심라인 히든 포켓. 셔링 디테일. 톤온톤 내부 안감이 매치됨. 뒷면 심라인 콘실 지퍼 여밈."
-    },
-    {
-      "id": 12,
-      "img": "https://lp2.hm.com/hmgoepprod?set=source[/8b/37/8b3753d54ad9443bae46c59d05db6053532e5c5d.jpg],origin[dam],category[ladies_accessories_bags_shoppertotes],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]",
-      "title": "쇼퍼백",
-      "price": 45900,
-      "choice": false,
-      "new": false,
-      "gender": "woman",
-      "type": "bag",
-      "des": "어깨끈이 달린 스트레이트 네크라인 미니 원피스. 옆면 심라인 히든 포켓. 셔링 디테일. 톤온톤 내부 안감이 매치됨. 뒷면 심라인 콘실 지퍼 여밈."
-    },
+
     {
       "id": 13,
       "img": "https://static.zara.net/assets/public/5b09/5cb3/258e468091f7/d8fae9efbe26/03991113712-p/03991113712-p.jpg?ts=1721993576574&w=841",
