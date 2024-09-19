@@ -16,6 +16,13 @@ const ProductDetailPage = () => {
   const { id } = useParams();
 
   const getProductDetail = () => {
+    console.log("ID value:", id);
+    console.log("ID type:", typeof id);
+    if (!id) {
+      console.error("No product ID found in URL");
+      return;
+    }
+    console.log("Fetching product with ID:", id); // id 값 로그로 확인
     dispatch(productAction.getProductDetail(id));
   };
 
@@ -25,7 +32,22 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (product && product.size) {
-      setSizeList(product.size);
+      console.log("Original size data:", product.size); // size 데이터 확인
+
+      try {
+        // size가 JSON 형식의 문자열로 저장된 경우 파싱
+        const parsedSize = JSON.parse(product?.size);
+        console.log(parsedSize);
+
+        // 배열로 파싱된 경우에만 sizeList 설정
+        if (Array.isArray(parsedSize)) {
+          setSizeList(parsedSize);
+        } else {
+          console.error("Parsed size is not an array:", parsedSize);
+        }
+      } catch (error) {
+        console.error("Failed to parse size as JSON:", error);
+      }
     }
   }, [product]);
 
@@ -33,7 +55,7 @@ const ProductDetailPage = () => {
     getProductDetail();
   }, [id]);
 
-  if (!product) {
+  if (!product || Object.keys(product).length === 0) {
     return <div>Loading...</div>;
   }
 
