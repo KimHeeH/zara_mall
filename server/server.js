@@ -8,6 +8,10 @@ const port = 5000;
 // CORS 설정
 app.use(cors());
 app.use(express.json());
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Internal Server Error" });
+});
 
 // MySQL 연결 설정
 const db = mysql.createConnection({
@@ -27,19 +31,34 @@ db.connect((err) => {
 });
 
 // 모든 상품 가져오기 (GET /products)
-app.get("/products", (req, res) => {
-  const { type } = req.query; // 쿼리 파라미터에서 type 가져오기
-  let query = "SELECT * FROM productDB"; // 기본 쿼리
+app.get("/", (req, res) => {
+  const { type, search, gender } = req.query;
+  let query = "SELECT * FROM productDB";
   let queryParams = [];
+  let conditions = [];
 
-  // type이 존재하면 조건 추가
+  // 조건문을 모두 if로 수정하여 여러 조건을 동시에 처리할 수 있도록 함
   if (type) {
-    query += " WHERE type = ?";
+    conditions.push("type = ?");
     queryParams.push(type);
+  }
+  if (search) {
+    conditions.push("title LIKE ?");
+    queryParams.push(`%${search}%`);
+  }
+  if (gender) {
+    conditions.push("gender = ?");
+    queryParams.push(gender);
+  }
+
+  // 조건이 하나라도 있을 경우 WHERE 절 추가
+  if (conditions.length > 0) {
+    query += " WHERE " + conditions.join(" AND ");
   }
 
   db.query(query, queryParams, (err, results) => {
     if (err) {
+      console.error("Database query error:", err); // 오류 로그 추가
       res.status(500).send("Error fetching products");
       return;
     }

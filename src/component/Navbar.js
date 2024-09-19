@@ -4,6 +4,7 @@ import { IoMenuSharp } from "react-icons/io5";
 import { authenticateAction } from "../redux/actions/authenticateAction";
 import { useDispatch, useSelector } from "react-redux";
 import { productAction } from "../redux/actions/productAction";
+import { useSearchParams } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,13 +25,19 @@ const Navbar = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 관리
   const authenticate = useSelector((state) => state.auth.authenticate);
-
+  const [query] = useSearchParams();
+  const handleSearch = () => {
+    let searchQuery = query.get("search") || "";
+    console.log("Search Query:", searchQuery); // 검색어 로그로 출력
+    dispatch(productAction.getProducts(null, searchQuery, null));
+  };
   const goHomePage = () => {
     navigate("/");
   };
 
   const goProductPage = (keyword) => {
-    navigate(`/?q=${keyword}`);
+    navigate(`/?search=${keyword}`);
+    dispatch(productAction.getProducts(null, searchQuery, null));
   };
 
   const handleInputKeyDown = (event) => {
@@ -41,10 +48,10 @@ const Navbar = () => {
 
   const handleSearchClick = () => {
     if (searchQuery.trim()) {
-      goProductPage(searchQuery);
+      navigate(`/?search=${searchQuery}`);
+      dispatch(productAction.getProducts(null, searchQuery, null));
     }
   };
-
   const goLoginPage = () => {
     if (authenticate) {
       dispatch(authenticateAction.logout());
@@ -55,17 +62,24 @@ const Navbar = () => {
   };
 
   const handleSubMenuClick = (subItem) => {
-    dispatch(productAction.getProducts(subItem));
-    navigate(`/?type=${subItem}`);
-    setIsSideMenuOpen(false);
+    console.log("Clicked subItem:", subItem);
+    dispatch(productAction.getProducts(subItem))
+      .then(() => {
+        console.log("Products updated successfully");
+        navigate(`/?type=${subItem}`);
+      })
+      .catch((error) => {
+        console.error("Failed to update products:", error);
+      });
   };
 
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
   };
 
-  const goMenuProduct = (keyword) => {
-    navigate(`/?gender=${keyword}`);
+  const goMenuProduct = (menu) => {
+    navigate(`/?gender=${menu}`);
+    dispatch(productAction.getProducts(null, null, menu));
   };
 
   return (
@@ -109,6 +123,7 @@ const Navbar = () => {
         <div className="input-area">
           <input
             className="input-box"
+            style={{ padding: "10px" }}
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

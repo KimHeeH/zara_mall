@@ -1,23 +1,27 @@
 // productAction.js
 import { productActions } from "../reducers/productReducer";
-
 // 환경변수 또는 직접 설정한 API URL 사용
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_BASE_URL = "http://localhost:5000";
 
 // 모든 제품 가져오기
-function getProducts(typeQuery) {
+function getProducts(typeQuery, searchQuery, menuQuery) {
   return async (dispatch) => {
     try {
-      let url = `${API_BASE_URL}/products`;
+      let url = `${API_BASE_URL}/`;
       let params = new URLSearchParams();
 
       // type이 존재하면 쿼리 파라미터 추가
       if (typeQuery) params.append("type", typeQuery);
-      url += `?${params.toString()}`;
+      if (searchQuery) params.append("search", searchQuery);
+      if (menuQuery) params.append("gender", menuQuery);
 
+      // 쿼리 문자열이 있으면 ?를 추가하고, 그렇지 않으면 그대로 사용
+      const queryString = params.toString();
+      if (queryString) {
+        url += `?${queryString}`;
+      }
       const response = await fetch(url);
       if (!response.ok) throw new Error("Failed to fetch products");
-
       const data = await response.json();
       dispatch(productActions.getAllProducts(data));
     } catch (error) {
@@ -26,6 +30,7 @@ function getProducts(typeQuery) {
     }
   };
 }
+
 // 특정 제품 상세 정보 가져오기
 function getProductDetail(id) {
   return async (dispatch) => {
