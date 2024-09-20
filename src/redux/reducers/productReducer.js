@@ -2,8 +2,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
-  productList: [],
-  product: {}, // 빈 객체로 초기화
+  productList: undefined,
+  product: [], // 빈 객체로 초기화
 };
 
 const productSlice = createSlice({

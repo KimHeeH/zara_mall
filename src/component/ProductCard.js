@@ -37,10 +37,9 @@ const ProductCard = ({ product }) => {
           alt={product?.title}
         />
       </div>
-      <div>{product?.choice === true ? "concious choice" : ""}</div>
+
       <div>{product?.title}</div>
       <div>{product?.price}</div>
-      <div>{product?.new === true ? "신제품" : ""}</div>
     </div>
   );
 };

@@ -61,25 +61,26 @@ const Navbar = () => {
     }
   };
 
-  const handleSubMenuClick = (subItem) => {
-    console.log("Clicked subItem:", subItem);
-    dispatch(productAction.getProducts(subItem))
-      .then(() => {
-        console.log("Products updated successfully");
-        navigate(`/?type=${subItem}`);
-      })
-      .catch((error) => {
-        console.error("Failed to update products:", error);
-      });
-  };
+  const handleSubMenuClick = async (gender, subItem) => {
+    console.log("Clicked subItem:", gender, subItem);
 
-  const toggleSideMenu = () => {
-    setIsSideMenuOpen(!isSideMenuOpen);
+    // 로딩 상태 관리 추가
+    try {
+      await dispatch(productAction.getProducts(subItem, null, gender));
+      console.log("Products updated successfully");
+    } catch (error) {
+      console.error("Failed to update products:", error);
+    }
+    navigate(`/?type=${subItem}&gender=${gender}`);
   };
 
   const goMenuProduct = (menu) => {
     navigate(`/?gender=${menu}`);
     dispatch(productAction.getProducts(null, null, menu));
+  };
+
+  const toggleSideMenu = () => {
+    setIsSideMenuOpen(!isSideMenuOpen);
   };
 
   return (
@@ -140,12 +141,13 @@ const Navbar = () => {
           {sideMenuList.map((item, index) => (
             <div key={index} className="side-menu-item">
               <h3>{item.name}</h3>
+
               <ul>
                 {item.subMenu.map((subItem, subIndex) => (
                   <li
                     key={subIndex}
                     className="sub-menu-item"
-                    onClick={() => handleSubMenuClick(subItem)}
+                    onClick={() => handleSubMenuClick(item.name, subItem)}
                   >
                     {subItem}
                   </li>

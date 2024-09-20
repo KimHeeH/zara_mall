@@ -34,19 +34,29 @@ const ProductDetailPage = () => {
     if (product && product.size) {
       console.log("Original size data:", product.size); // size 데이터 확인
 
-      try {
-        // size가 JSON 형식의 문자열로 저장된 경우 파싱
-        const parsedSize = JSON.parse(product?.size);
-        console.log(parsedSize);
+      let parsedSize;
 
-        // 배열로 파싱된 경우에만 sizeList 설정
-        if (Array.isArray(parsedSize)) {
-          setSizeList(parsedSize);
-        } else {
-          console.error("Parsed size is not an array:", parsedSize);
+      if (Array.isArray(product.size)) {
+        // 이미 배열인 경우 그대로 사용
+        parsedSize = product.size;
+      } else {
+        try {
+          // 문자열인 경우 JSON 파싱 또는 쉼표로 분리
+          if (product.size.startsWith("[")) {
+            parsedSize = JSON.parse(product.size);
+          } else {
+            parsedSize = product.size.split(",").map((size) => size.trim());
+          }
+        } catch (error) {
+          console.error("Failed to parse size as JSON:", error);
+          parsedSize = []; // 파싱에 실패한 경우 빈 배열로 초기화
         }
-      } catch (error) {
-        console.error("Failed to parse size as JSON:", error);
+      }
+
+      if (Array.isArray(parsedSize)) {
+        setSizeList(parsedSize);
+      } else {
+        console.error("Parsed size is not an array:", parsedSize);
       }
     }
   }, [product]);
@@ -81,10 +91,10 @@ const ProductDetailPage = () => {
             />
           </div>
           <div className="description" style={{ padding: "30px" }}>
-            <div style={{ marginBottom: "10px", fontSize: "12px" }}>
+            <div style={{ marginBottom: "10px", fontSize: "13px" }}>
               {product?.title}
             </div>
-            <div style={{ marginBottom: "20px", fontSize: "11px" }}>
+            <div style={{ marginBottom: "20px", fontSize: "13px" }}>
               \ {product?.price}
             </div>
             <div
@@ -97,7 +107,7 @@ const ProductDetailPage = () => {
               <div
                 style={{
                   marginBottom: "30px",
-                  fontSize: "11px",
+                  fontSize: "13px",
                 }}
               >
                 {product?.des}

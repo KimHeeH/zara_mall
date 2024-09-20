@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap"; // Spinner 추가
 import ProductCard from "../component/ProductCard";
 import { useSelector, useDispatch } from "react-redux";
 import { productAction } from "../redux/actions/productAction";
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [animate, setAnimate] = useState(true); // 애니메이션 상태 추가
-  const [query, setQuery] = useSearchParams();
-  const productList = useSelector((state) => state.product.productList) || [];
+  const [animate, setAnimate] = useState(true);
+  const [query] = useSearchParams();
+  const productList = useSelector((state) => state.product.productList);
+
   const [showSlideImage, setShowSlideImage] = useState(true);
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   let menuQuery = query.get("gender") || "";
   let typeQuery = query.get("type") || "";
@@ -23,24 +25,33 @@ const HomePage = () => {
     "https://static.zara.net/photos///contents/mkt/spots/ss24-north-woman-new/subhome-xmedia-30-home-4//w/1920/image-landscape-fill-db0320a6-aabf-4dad-be49-23d87e8e2192-default_0.jpg?ts=1721835021975",
   ];
 
-  const getProducts = () => {
-    let searchQuery = query.get("search") || "";
-    console.log(searchQuery);
-    let typeQuery = query.get("type") || "";
-    let menuQuery = query.get("gender") || "";
-    dispatch(productAction.getProducts(searchQuery, typeQuery, menuQuery));
+  const getProducts = async () => {
+    if (loading) return; // 이미 로딩 중이면 추가 요청 방지
+
+    setLoading(true);
+
+    try {
+      await dispatch(
+        productAction.getProducts(searchQuery, typeQuery, menuQuery)
+      );
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+    } finally {
+      setLoading(false);
+    }
+
     setShowSlideImage(!searchQuery && !typeQuery && !menuQuery);
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setAnimate(false); // 애니메이션 비활성화
+      setAnimate(false);
       setTimeout(() => {
         setCurrentImageIndex((prevIndex) =>
           prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
-        setAnimate(true); // 애니메이션 활성화
-      }, 0); // 바로 애니메이션 재활성화
+        setAnimate(true);
+      }, 0);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -48,38 +59,67 @@ const HomePage = () => {
 
   useEffect(() => {
     getProducts();
-  }, [query]);
+  }, [query]); // query를 의존성으로 사용
 
   return (
     <div>
-      {showSlideImage && (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <img
-            src={images[currentImageIndex]}
-            alt="slide"
-            className={animate ? "slide-img" : ""} // 애니메이션 적용
-            style={{
-              width: "90%",
-              height: "auto",
-              marginBottom: "50px",
-            }}
-          />
+      {loading || productList === undefined ? ( // 로딩 상태나 undefined 상태 확인
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+
+            height: "90vh",
+          }}
+        >
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>{" "}
+          {/* 로딩 스피너 표시 */}
+        </div>
+      ) : (
+        <div>
+          {showSlideImage && (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <img
+                src={images[currentImageIndex]}
+                alt="slide"
+                className={animate ? "slide-img" : ""}
+                style={{
+                  width: "90%",
+                  height: "auto",
+                  marginBottom: "50px",
+                }}
+              />
+            </div>
+          )}
+          <Container>
+            <Row>
+              <h5>
+                {menuQuery && typeQuery
+                  ? `${menuQuery} - ${typeQuery}`
+                  : menuQuery
+                  ? menuQuery
+                  : typeQuery
+                  ? typeQuery
+                  : null}
+              </h5>
+
+              {productList.length > 0 ? (
+                productList.map((product) => (
+                  <Col lg={3} key={product.id}>
+                    <ProductCard product={product} />
+                  </Col>
+                ))
+              ) : (
+                <h5 style={{ color: "grey" }}>
+                  로딩중 ..메뉴를 한번 더 클릭해주세요
+                </h5>
+              )}
+            </Row>
+          </Container>
         </div>
       )}
-      <Container>
-        <Row>
-          <h5>{menuQuery ? menuQuery : typeQuery ? typeQuery : ""}</h5>
-          {productList.length > 0 ? (
-            productList.map((product) => (
-              <Col lg={3} key={product.id}>
-                <ProductCard product={product} />
-              </Col>
-            ))
-          ) : (
-            <p>No products found</p>
-          )}
-        </Row>
-      </Container>
     </div>
   );
 };
